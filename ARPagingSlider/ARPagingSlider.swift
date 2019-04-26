@@ -2,13 +2,53 @@
 //  ARPagingSlider.swift
 //  PagingSlider
 //
-//  Created by Anshu on 24/04/19.
-//  Copyright © 2019 Anshu. All rights reserved.
-//
+//  MIT License
+/*
+Copyright (c) 2019 Anshu Roy
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+//  MIT License
+
+Copyright (c) 2019 Anshu Roy
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 import UIKit
 
-class ARPagingSlider: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+open class ARPagingSlider: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var pageControl : UIPageControl!
     var collectionView: UICollectionView!
@@ -22,7 +62,7 @@ class ARPagingSlider: UIView, UICollectionViewDelegate, UICollectionViewDataSour
 
     // MARK:- Setup Methods
     
-    override func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         
         let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
@@ -90,7 +130,7 @@ class ARPagingSlider: UIView, UICollectionViewDelegate, UICollectionViewDataSour
     
     // MARK:- Customize Methods
     
-    func showSlider(array options:NSArray, pageControlTintColor color:UIColor, pageControlSelectedColor selectedColor:UIColor, isAnimated isanimated:Bool, titles titleArray:NSArray?, titleColor titlecolor:UIColor?, titleFont titlefont:UIFont?, titleShadow titleshadow:UIColor?, completionBlockSuccess:@escaping CompletionHandler) -> Void {
+   func showSlider(array options:NSArray, pageControlTintColor color:UIColor, pageControlSelectedColor selectedColor:UIColor, isAnimated isanimated:Bool, titles titleArray:NSArray?, titleColor titlecolor:UIColor?, titleFont titlefont:UIFont?, titleShadow titleshadow:UIColor?, completionBlockSuccess:@escaping CompletionHandler) -> Void {
         self.ARPagingSliderBlock = completionBlockSuccess
         collectionView.backgroundColor = UIColor.clear
         self.dataSourceArray.addObjects(from: options as! [String])
@@ -129,25 +169,25 @@ class ARPagingSlider: UIView, UICollectionViewDelegate, UICollectionViewDataSour
     
     // MARK:- UICollectionViewDelegate & UICollectionViewDataSource Methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+   public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.collectionView.frame.size.width-0.5, height: self.collectionView.frame.size.height-0.5)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  public  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataSourceArray.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : GridCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Slider", for: indexPath) as! GridCell
         cell.imageView.image = UIImage.init(named: self.dataSourceArray.object(at: indexPath.row) as! String)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+   public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.ARPagingSliderBlock(indexPath.row)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let visibleRect = CGRect(origin: self.collectionView.contentOffset, size: self.collectionView.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         if let visibleIndexPath = self.collectionView.indexPathForItem(at: visiblePoint) {

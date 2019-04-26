@@ -33,6 +33,6 @@ s.source_files = "ARPagingSlider/**/*.{swift}"
 #s.resources = "ARPagingSlider/**/*.{png,jpeg,jpg}"
 
 # 10
-s.swift_version = "5.0"
+s.swift_version = "4.2"
 
 end

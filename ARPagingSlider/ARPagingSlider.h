@@ -15,6 +15,3 @@ FOUNDATION_EXPORT double ARPagingSliderVersionNumber;
 FOUNDATION_EXPORT const unsigned char ARPagingSliderVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ARPagingSlider/PublicHeader.h>
-
-#import "ARPagingSlider.swift"
-
