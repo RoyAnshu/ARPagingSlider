@@ -50,15 +50,15 @@ import UIKit
 
 open class ARPagingSlider: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var pageControl : UIPageControl!
-    var collectionView: UICollectionView!
-    var dataSourceArray : NSMutableArray!
-    var dataSourceArray_title : NSMutableArray!
+  public  var pageControl : UIPageControl!
+   public var collectionView: UICollectionView!
+  public  var dataSourceArray : NSMutableArray!
+   public var dataSourceArray_title : NSMutableArray!
 
-    var titleLbl: UILabel!
+  public  var titleLbl: UILabel!
 
-    typealias CompletionHandler = (_ selectedIndex:NSInteger) -> Void
-    var ARPagingSliderBlock : CompletionHandler!
+  public typealias CompletionHandler = (_ selectedIndex:NSInteger) -> Void
+  public  var ARPagingSliderBlock : CompletionHandler!
 
     // MARK:- Setup Methods
     
@@ -130,7 +130,7 @@ open class ARPagingSlider: UIView, UICollectionViewDelegate, UICollectionViewDat
     
     // MARK:- Customize Methods
     
-   func showSlider(array options:NSArray, pageControlTintColor color:UIColor, pageControlSelectedColor selectedColor:UIColor, isAnimated isanimated:Bool, titles titleArray:NSArray?, titleColor titlecolor:UIColor?, titleFont titlefont:UIFont?, titleShadow titleshadow:UIColor?, completionBlockSuccess:@escaping CompletionHandler) -> Void {
+   open func showSlider(array options:NSArray, pageControlTintColor color:UIColor, pageControlSelectedColor selectedColor:UIColor, isAnimated isanimated:Bool, titles titleArray:NSArray?, titleColor titlecolor:UIColor?, titleFont titlefont:UIFont?, titleShadow titleshadow:UIColor?, completionBlockSuccess:@escaping CompletionHandler) -> Void {
         self.ARPagingSliderBlock = completionBlockSuccess
         collectionView.backgroundColor = UIColor.clear
         self.dataSourceArray.addObjects(from: options as! [String])
